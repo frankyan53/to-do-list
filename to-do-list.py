@@ -46,6 +46,15 @@ def choose_task(tasks):
         return choose_task(tasks)
 
 
+def archive_task(task):
+    current_tasks = load_current_tasks()
+    current_tasks.remove(task)
+    save_current_tasks(current_tasks)
+    archived_tasks = load_archived_tasks()
+    archived_tasks.append(task)
+    save_archived_tasks(archived_tasks)
+
+
 def add_task():
     tasks = load_current_tasks()
     id_counter = load_id_counter()
