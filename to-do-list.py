@@ -27,13 +27,15 @@ def save_id_counter(id_counter):
 
 def add_task():
     tasks = load_tasks()
+    id_counter = load_id_counter()
     new_task = {
-        "id": load_id_counter(),
+        "id": id_counter,
         "task": input("Add a task: "),
         "description": input("Describe the task: "),
         "status": "to do",
         "created_at": datetime.now().strftime("%b %d, %Y at %I:%M %p")
     }
-    save_tasks(new_task)
-    save_id_counter(load_id_counter() + 1)
+    tasks.append(new_task)
+    save_tasks(tasks)
+    save_id_counter(id_counter + 1)
     print("Task created successfully.")
