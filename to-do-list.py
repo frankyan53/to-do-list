@@ -90,7 +90,12 @@ def update_task():
         task["last_updated"] = datetime.now().strftime(
             "%b %d, %Y at %I:%M %p")
         save_current_tasks(tasks)
-        print("Task updated successfully.")
+        if status == "3":
+            print("Task archived successfully.")
+        else:
+            print("Task updated successfully.")
+    if status == "3":
+        archive_task(task)
     else:
         print("Invalid status choice.")
 
