@@ -39,3 +39,30 @@ def add_task():
     save_tasks(tasks)
     save_id_counter(id_counter + 1)
     print("Task created successfully.")
+
+
+def update_task():
+    tasks = load_tasks()
+    id = input("Enter task ID: ")
+    for task in tasks:
+        if str(task["id"]) == id:
+            status_dict = {
+                "1": "to do",
+                "2": "in progress",
+                "3": "completed"
+            }
+            status = input("""
+                           1 - to do
+                           2 - in progress
+                           3 - completed
+                           Choose new status (1/2/3):
+                           """)
+            if status in ("1", "2", "3"):
+                task["status"] = status_dict.get(status)
+                save_tasks(tasks)
+                print("Task updated successfully.")
+            else:
+                print("Invalid status choice.")
+            break
+    else:
+        print("Task ID not found.")
