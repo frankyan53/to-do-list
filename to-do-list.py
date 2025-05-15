@@ -3,15 +3,15 @@ import os
 from datetime import datetime
 
 
-def load_tasks():
+def load_current_tasks():
     with open("current_tasks.json", "r") as f:
-        tasks = json.load(f)
-        return tasks
+        current_tasks = json.load(f)
+        return current_tasks
 
 
-def save_tasks(tasks):
+def save_current_tasks(current_tasks):
     with open("current_tasks.json", "w") as f:
-        json.dump(tasks, f, indent=2)
+        json.dump(current_tasks, f, indent=2)
 
 
 def load_id_counter():
@@ -36,7 +36,7 @@ def choose_task(tasks):
 
 
 def add_task():
-    tasks = load_tasks()
+    tasks = load_current_tasks()
     id_counter = load_id_counter()
     new_task = {
         "id": id_counter,
@@ -46,13 +46,13 @@ def add_task():
         "created_at": datetime.now().strftime("%b %d, %Y at %I:%M %p")
     }
     tasks.append(new_task)
-    save_tasks(tasks)
+    save_current_tasks(tasks)
     save_id_counter(id_counter + 1)
     print("Task created successfully.")
 
 
 def update_task():
-    tasks = load_tasks()
+    tasks = load_current_tasks()
     task = choose_task(tasks)
     status_dict = {
         "1": "to do",
@@ -69,14 +69,14 @@ def update_task():
         task["status"] = status_dict.get(status)
         task["last_updated"] = datetime.now().strftime(
             "%b %d, %Y at %I:%M %p")
-        save_tasks(tasks)
+        save_current_tasks(tasks)
         print("Task updated successfully.")
     else:
         print("Invalid status choice.")
 
 
 def delete_task():
-    tasks = load_tasks()
+    tasks = load_current_tasks()
     task = choose_task(tasks)
     tasks.remove(task)
-    save_tasks(tasks)
+    save_current_tasks(tasks)
