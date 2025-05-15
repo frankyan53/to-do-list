@@ -59,6 +59,8 @@ def update_task():
                            """)
             if status in ("1", "2", "3"):
                 task["status"] = status_dict.get(status)
+                task["last_updated"] = datetime.now().strftime(
+                    "%b %d, %Y at %I:%M %p")
                 save_tasks(tasks)
                 print("Task updated successfully.")
             else:
