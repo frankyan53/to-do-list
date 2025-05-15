@@ -14,6 +14,17 @@ def save_current_tasks(current_tasks):
         json.dump(current_tasks, f, indent=2)
 
 
+def load_archived_tasks():
+    with open("archived_tasks.json", "r") as f:
+        archived_tasks = json.load(f)
+        return archived_tasks
+
+
+def save_archived_tasks(archived_tasks):
+    with open("archived_tasks.json", "w") as f:
+        json.dump(archived_tasks, f, indent=2)
+
+
 def load_id_counter():
     with open("id_counter.json", "r") as f:
         id_counter = json.load(f)
