@@ -25,6 +25,16 @@ def save_id_counter(id_counter):
         json.dump(id_counter, f, indent=2)
 
 
+def choose_task(tasks):
+    id = input("Enter task ID: ")
+    for task in tasks:
+        if str(task["id"]) == id:
+            return task
+    else:
+        print("Task ID not found.")
+        return choose_task(tasks)
+
+
 def add_task():
     tasks = load_tasks()
     id_counter = load_id_counter()
@@ -43,28 +53,23 @@ def add_task():
 
 def update_task():
     tasks = load_tasks()
-    id = input("Enter task ID: ")
-    for task in tasks:
-        if str(task["id"]) == id:
-            status_dict = {
-                "1": "to do",
-                "2": "in progress",
-                "3": "completed"
-            }
-            status = input("""
-                           1 - to do
-                           2 - in progress
-                           3 - completed
-                           Choose new status (1/2/3):
-                           """)
-            if status in ("1", "2", "3"):
-                task["status"] = status_dict.get(status)
-                task["last_updated"] = datetime.now().strftime(
-                    "%b %d, %Y at %I:%M %p")
-                save_tasks(tasks)
-                print("Task updated successfully.")
-            else:
-                print("Invalid status choice.")
-            break
+    task = choose_task(tasks)
+    status_dict = {
+        "1": "to do",
+        "2": "in progress",
+        "3": "completed"
+    }
+    status = input("""
+                   1 - to do
+                   2 - in progress
+                   3 - completed
+                   Choose new status (1/2/3):
+                   """)
+    if status in ("1", "2", "3"):
+        task["status"] = status_dict.get(status)
+        task["last_updated"] = datetime.now().strftime(
+            "%b %d, %Y at %I:%M %p")
+        save_tasks(tasks)
+        print("Task updated successfully.")
     else:
-        print("Task ID not found.")
+        print("Invalid status choice.")
