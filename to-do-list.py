@@ -73,3 +73,10 @@ def update_task():
         print("Task updated successfully.")
     else:
         print("Invalid status choice.")
+
+
+def delete_task():
+    tasks = load_tasks()
+    task = choose_task(tasks)
+    tasks.remove(task)
+    save_tasks(tasks)
