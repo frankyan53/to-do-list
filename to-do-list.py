@@ -182,3 +182,35 @@ Choose task type (1/2/3/4/5): """)
             print(
                 f"{task["id"]:<5} {format_task_name(task["task"]):<20} {task["status"]:<12}")
         print()
+
+
+def main():
+    initialize_storage()
+    print("This is a to-do list.")
+    while True:
+        action = input("""1. Add task
+2. Update task
+3. Delete task
+4. View task
+5. List tasks
+6. Exit 
+Enter a number (1-6): """)
+        print()
+        if action == "1":
+            add_task()
+        elif action == "2":
+            update_task()
+        elif action == "3":
+            delete_task()
+        elif action == "4":
+            view_task()
+        elif action == "5":
+            list_tasks()
+        elif action == "6":
+            break
+        else:
+            print("Invalid choice. Try again.")
+
+
+if __name__ == "__main__":
+    main()
