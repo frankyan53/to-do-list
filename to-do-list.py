@@ -53,6 +53,7 @@ def choose_task(tasks):
     id = input("Enter task ID: ")
     for task in tasks:
         if str(task["id"]) == id:
+            print()
             return task
     else:
         print("Task ID not found. Try again.", end=" ")
@@ -85,7 +86,7 @@ def add_task():
     tasks.append(new_task)
     save_current_tasks(tasks)
     save_id_counter(id_counter + 1)
-    print("Task created successfully.")
+    print("Task created successfully.\n")
 
 
 def update_task():
@@ -114,8 +115,7 @@ Enter a number (1-3): """)
         print("Task updated successfully.")
     if status == "3":
         archive_task(task)
-    else:
-        print("Invalid status choice.")
+    print()
 
 
 def delete_task():
@@ -124,7 +124,7 @@ def delete_task():
     task = choose_task(tasks)
     tasks.remove(task)
     save_current_tasks(tasks)
-    print("Task deleted successfully.")
+    print("Task deleted successfully.\n")
 
 
 def view_task():
@@ -169,11 +169,13 @@ def list_tasks():
 4. list completed tasks
 5. list archived tasks
 Choose task type (1/2/3/4/5): """)
+    print()
     while task_type not in task_labels_dict:
         task_type = input("Task type invalid. Try again. Enter task type: ")
+    print()
     task_list = task_list_dict[task_type]
     if not task_list:
-        print("No tasks listed.")
+        print("No tasks listed.\n")
     else:
         print("=" * 40)
         print(f"{task_labels_dict[task_type]:^40}")
