@@ -100,16 +100,18 @@ def update_task():
     status = input("""1. to do
 2. in progress
 3. completed
-Choose new status (1/2/3): """)
-    if status in ("1", "2", "3"):
-        task["status"] = status_dict.get(status)
-        task["last_updated"] = datetime.now().strftime(
-            "%b %d, %Y at %I:%M %p")
-        save_current_tasks(tasks)
-        if status == "3":
-            print("Task archived successfully.")
-        else:
-            print("Task updated successfully.")
+Enter a number (1-3): """)
+    while status not in ("1", "2", "3"):
+        status = input(
+            "Invalid status choice. Try again. Enter a number (1-3): ")
+    print()
+    task["status"] = status_dict.get(status)
+    task["last_updated"] = datetime.now().strftime("%b %d, %Y at %I:%M %p")
+    save_current_tasks(tasks)
+    if status == "3":
+        print("Task archived successfully.")
+    else:
+        print("Task updated successfully.")
     if status == "3":
         archive_task(task)
     else:
