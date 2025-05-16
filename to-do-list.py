@@ -168,7 +168,7 @@ def list_tasks():
 3. list in progress tasks
 4. list completed tasks
 5. list archived tasks
-Choose task type (1/2/3/4/5): """)
+Choose task type (1-5): """)
     print()
     while task_type not in task_labels_dict:
         task_type = input("Task type invalid. Try again. Enter task type: ")
