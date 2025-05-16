@@ -77,6 +77,7 @@ def add_task():
 
 def update_task():
     tasks = load_current_tasks()
+    print("What task do you want to update?", end=" ")
     task = choose_task(tasks)
     status_dict = {
         "1": "to do",
@@ -105,6 +106,7 @@ Choose new status (1/2/3): """)
 
 def delete_task():
     tasks = load_current_tasks()
+    print("What task do you want to delete?", end=" ")
     task = choose_task(tasks)
     tasks.remove(task)
     save_current_tasks(tasks)
