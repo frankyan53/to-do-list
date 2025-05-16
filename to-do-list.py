@@ -4,6 +4,18 @@ import textwrap
 from datetime import datetime
 
 
+def initialize_storage():
+    if not os.path.exists("current_tasks.json"):
+        with open("current_tasks.json", "w") as f:
+            json.dump([], f)
+    if not os.path.exists("archived_tasks.json"):
+        with open("archived_tasks.json", "w") as f:
+            json.dump([], f)
+    if not os.path.exists("id_counter.json"):
+        with open("id_counter.json", "w") as f:
+            json.dump(1, f)
+
+
 def load_current_tasks():
     with open("current_tasks.json", "r") as f:
         current_tasks = json.load(f)
