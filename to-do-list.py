@@ -80,11 +80,10 @@ def update_task():
         "3": "completed"
     }
     status = input("""
-                   1. to do
-                   2. in progress
-                   3. completed
-                   Choose new status (1/2/3): 
-                   """)
+1. to do
+2. in progress
+3. completed
+Choose new status (1/2/3): """)
     if status in ("1", "2", "3"):
         task["status"] = status_dict.get(status)
         task["last_updated"] = datetime.now().strftime(
