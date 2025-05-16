@@ -1,5 +1,6 @@
 import json
 import os
+import textwrap
 from datetime import datetime
 
 
@@ -111,6 +112,25 @@ def delete_task():
     tasks.remove(task)
     save_current_tasks(tasks)
     print("Task deleted successfully.")
+
+
+def view_task():
+    tasks = load_current_tasks()
+    print("What task do you want to view?", end=" ")
+    task = choose_task(tasks)
+    print("=" * 40)
+    print(f"{" " * 11} DETAILED TASK VIEW {" " * 11}")
+    print("=" * 40)
+    print(f"ID: {task["id"]}")
+    print(textwrap.fill(task["task"], 40,
+          initial_indent="Task: ", subsequent_indent="      "))
+    print(textwrap.fill(task["description"], 40,
+          initial_indent="Description: ", subsequent_indent="             "))
+    print(f"Status: {task["status"]}")
+    print(f"Created at: {task["created_at"]}")
+    if "last_updated" in task:
+        print(f"Last updated: {task["last_updated"]}")
+    print()
 
 
 def list_tasks():
