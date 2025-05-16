@@ -97,8 +97,7 @@ def update_task():
         "2": "in progress",
         "3": "completed"
     }
-    status = input("""
-1. to do
+    status = input("""1. to do
 2. in progress
 3. completed
 Choose new status (1/2/3): """)
@@ -162,8 +161,7 @@ def list_tasks():
         "4": [task for task in archived_tasks if task["status"] == "completed"],
         "5": archived_tasks
     }
-    task_type = input("""
-1. list current tasks
+    task_type = input("""1. list current tasks
 2. list to do tasks
 3. list in progress tasks
 4. list completed tasks
