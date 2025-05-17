@@ -1,7 +1,7 @@
 # 📝 To-Do List CLI
 
 ## 📖 Overview
-This is a simple command-line To-Do List application built with Python. It lets you manage tasks by adding, updating, deleting, viewing, and listing them — all from the terminal. Tasks are saved locally using JSON files, ensuring your data persists between sessions.
+This is a simple command-line to-do list application built with Python. It lets you manage tasks by adding, updating, deleting, viewing, and listing them — all from the terminal. Tasks are saved locally using JSON files, ensuring your data persists between sessions.
 
 ---
 
